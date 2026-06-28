@@ -39,8 +39,8 @@ Each case documented with:
 ## 📝 Author
 
 Ky - System Administration Learning
-- Email: ky@email.com
-- LinkedIn: linkedin.com/in/kyname
+- Email: rizkyanndaaa@gmail.com
+- LinkedIn: [linkedin.com/in/rizky](https://www.linkedin.com/in/rizky-ananda-b1bb07342/)
 
 ---
 *Last updated: June 2026*
