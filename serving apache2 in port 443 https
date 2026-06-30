@@ -1,0 +1,56 @@
+## Case 6: HTTPS Port 443 Not Serving in Apache2
+
+### Problem Statement
+Port 443 listening di Ubuntu Server tetapi Apache2 tidak serve HTTPS. Browser redirect ke HTTP atau error.
+
+### Investigation Steps
+```bash
+# Check port 443 status
+sudo ss -tuln | grep 443
+# Result: Port listen tapi HTTPS tidak jalan
+
+# Check SSL module
+sudo apache2ctl -M | grep ssl
+# Result: mod_ssl not enabled
+
+# Check certificate
+ls -la /etc/ssl/certs/apache-selfsigned.crt
+# Result: File not found
+```
+
+### Root Cause Analysis
+1. SSL module (`mod_ssl`) tidak enabled
+2. Self-signed certificate tidak ada di server
+3. Default-SSL VirtualHost tidak enabled
+
+### Solution Applied
+```bash
+# 1. Enable SSL module
+sudo a2enmod ssl
+
+# 2. Create self-signed certificate
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+  -keyout /etc/ssl/private/apache-selfsigned.key \
+  -out /etc/ssl/certs/apache-selfsigned.crt
+
+# 3. Enable default-ssl site
+sudo a2ensite default-ssl
+
+# 4. Restart Apache
+sudo systemctl restart apache2
+```
+
+### Verification
+```bash
+sudo ss -tuln | grep 443
+# Output: LISTEN *:443 ✓
+
+curl -k https://192.168.1.46
+# Output: Apache2 Default Page ✓
+```
+
+### Key Learnings
+- SSL module = required untuk HTTPS
+- Certificate = mandatory untuk TLS handshake
+- Self-signed cert OK untuk dev, butuh CA-signed untuk production
+- Port listening ≠ service working → verify dengan test actual connection
