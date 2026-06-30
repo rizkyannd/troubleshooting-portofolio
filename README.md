@@ -5,12 +5,13 @@ Dokumentasi systematik troubleshooting cases untuk system administration learnin
 ## 📋 Contents
 
 | # | Case | Topic | Status |
-|---|------|-------|--------|
-| 1 | SSH Connection Refused | Firewall | ✅ |
-| 2 | Disk Space Full | Storage | ⏳ |
-| 3 | Service Crashed | Monitoring | ⏳ |
-| 4 | Permission Denied | Access Control | ⏳ |
-| 5 | Network Latency | Networking | ⏳ |
+| --- | --- | --- | --- |
+| 1 | SSH Connection Refused | Firewall | ✓ |
+| 2 | Disk Space Full | Storage | ✗ |
+| 3 | Service Crashed | Monitoring | ✗ |
+| 4 | Permission Denied | Access Control | ✗ |
+| 5 | Network Latency | Networking | ✗ |
+| 6 | HTTPS Port 443 Not Serving | Web Server | ✓ |
 
 ## 🎯 Purpose
 
